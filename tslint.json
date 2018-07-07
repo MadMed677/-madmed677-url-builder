@@ -6,7 +6,10 @@
     "jsRules": {},
     "rules": {
         "quotemark": ["single"],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+        "jsdoc-format": [true, "check-multiline-start"],
+        "completed-docs": [true, "methods"],
+        "trailing-comma": false
     },
     "rulesDirectory": []
 }
