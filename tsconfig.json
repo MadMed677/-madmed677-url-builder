@@ -5,6 +5,7 @@
 		"sourceMap": true,
 		"declaration": true,
 		"outDir": "./dist",
+		"moduleResolution": "node",
 		"strict": true
 	},
 	"exclude": [
