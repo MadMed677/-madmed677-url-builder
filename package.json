@@ -5,8 +5,10 @@
   "main": "dist/index.js",
   "typings": "dist/index",
   "scripts": {
+    "precommit": "npm run lint",
     "build:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "build:prod": "tsc",
+    "lint": "tslint -c tslint.json '{src,test}/**/*.ts'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@types/jest": "23.1.4",
     "@types/node": "^10.5.2",
+    "husky": "^0.14.3",
     "jest": "23.3.0",
     "ts-jest": "23.0.0",
     "ts-node": "^7.0.0",
