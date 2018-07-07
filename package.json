@@ -1,0 +1,47 @@
+{
+  "name": "@madmed677/url-builder",
+  "version": "0.1.0",
+  "description": "The module which build urls for NodeJS",
+  "main": "dist/index.js",
+  "typings": "dist/index",
+  "scripts": {
+    "build:dev": "ts-node -r tsconfig-paths/register src/index.ts",
+    "build:prod": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MadMed677/-madmed677-url-builder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MadMed677/-madmed677-url-builder/issues"
+  },
+  "homepage": "https://github.com/MadMed677/-madmed677-url-builder#readme",
+  "dependencies": {
+    "qs": "^6.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "23.1.4",
+    "jest": "23.3.0",
+    "ts-jest": "23.0.0",
+    "ts-node": "^7.0.0",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage"
+  }
+}
