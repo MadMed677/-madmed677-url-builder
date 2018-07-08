@@ -16,10 +16,6 @@ const urlBuilder = new UrlBuilder({
         portal: {
             protocol: 'https',
             host: 'money.yandex.ru'
-        },
-        default: {
-            protocol: 'https',
-            host: 'money.yandex.ru'
         }
     }
 });
@@ -50,4 +46,11 @@ const portalTransferPage = routes
     .build()
 ;
 // 'https://money.yandex.ru/transfer/'
+
+const portalTransferSearchPage = routes
+    .application('portal')
+    .action('transfer-search-page')
+    .build()
+;
+// 'https://money.yandex.ru/transfer/search/'
 ```

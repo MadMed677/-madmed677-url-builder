@@ -9,7 +9,8 @@
         "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
         "jsdoc-format": [true, "check-multiline-start"],
         "completed-docs": [true, "methods"],
-        "trailing-comma": false
+        "trailing-comma": false,
+        "object-literal-sort-keys": false
     },
     "rulesDirectory": []
 }
