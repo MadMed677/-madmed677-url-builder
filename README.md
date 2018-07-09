@@ -55,7 +55,7 @@ const portalTransferSearchPage = routes
     .action('transfer-search-page')
     .build()
 ;
-// 'https://money.yandex.ru/transfer/search/'
+// 'https://money.yandex.ru/transfer/search'
 
 const portalTransferSearchQueryPage = routes
     .application('portal')
@@ -67,5 +67,5 @@ const portalTransferSearchQueryPage = routes
         }
     })
 ;
-// 'https://money.yandex.ru/transfer/search/?param1=val1&param2=val2'
+// 'https://money.yandex.ru/transfer/search?param1=val1&param2=val2'
 ```
