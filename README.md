@@ -2,10 +2,10 @@
 
 ## How to use
 
-1. Configure all your routes in one single place. For an example: __routes.js__
-```js
+__1__: Configure all your routes in one single place. For an example: __routes.js__
 
-const urlBuilder = new UrlBuilder({
+```js
+const urlBuilder = new ApplicationUrlBuilder({
     applications: {
         installments: {
             protocol: 'https',
@@ -39,7 +39,7 @@ const routes = urlBuilder.routes({
 module.exports = routes;
 ```
 
-2. After that import your routes and build route by name. For an example: __app.js__
+__2__: After that import your routes and build route by name. For an example: __app.js__
 ```js
 const routes = require('/path/to/routes');
 
