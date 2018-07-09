@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as urlModule from 'url';
-import {IApplicationBuilder, IBuildParams, IRoute} from './url-builder.interface';
+import {IApplicationBuilder, IBuildParams, IQuery, IRoute} from './url-builder.interface';
 
 export class ApplicationBuilder {
     /** Current application */
@@ -8,6 +8,9 @@ export class ApplicationBuilder {
 
     /** Current action */
     private _action?: IRoute;
+
+    /** URL instance */
+    private _buildUrl?: URL;
 
     constructor(private readonly _applications: IApplicationBuilder[]) {}
 
@@ -58,6 +61,8 @@ export class ApplicationBuilder {
 
     /**
      * Create url by application and action
+     *
+     * @return {String}
      */
     public build(params: IBuildParams = {}): string {
         const application = this._application;
@@ -72,27 +77,48 @@ export class ApplicationBuilder {
         }
 
         const {protocol, host} = application.config;
+        const hostname = protocol + '://' + host;
+        this._buildUrl = new urlModule.URL(urlModule.resolve(hostname, action.params.pathname));
 
-        const hostname = (() => {
-            if (!host.match(/^[a-zA-Z]+:\/\//)) {
-                return protocol + '://' + host;
-            }
+        const query = {...action.params.query, ...params.query};
+        this
+            ._addQueryParameters(query)
+            ._addHash(params.hash);
 
-            return host;
-        })();
+        return this._buildUrl.toString();
+    }
 
-        const buildUrl = new urlModule.URL(urlModule.resolve(hostname, action.params.pathname));
-
-        if (params.query) {
-            _.forEach(params.query, (value, key) => {
-                buildUrl.searchParams.set(key, value);
+    /**
+     * Add query parameters to url
+     *
+     * @param {IQuery} query Query parameters
+     *
+     * @return {this}
+     * @private
+     */
+    private _addQueryParameters(query: IQuery) {
+        if (query) {
+            _.forEach(query, (value, key) => {
+                this._buildUrl.searchParams.set(key, value);
             });
         }
 
-        if (params.hash) {
-            buildUrl.hash = params.hash;
+        return this;
+    }
+
+    /**
+     * Add hash to url
+     *
+     * @param {string} hash Hash
+     *
+     * @return {this}
+     * @private
+     */
+    private _addHash(hash?: string) {
+        if (hash) {
+            this._buildUrl.hash = hash;
         }
 
-        return buildUrl.toString();
+        return this;
     }
 }

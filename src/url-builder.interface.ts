@@ -16,7 +16,13 @@ export interface IApplication {
 }
 
 export interface IRouteConfig {
+    /** Url pathname */
     pathname: string;
+
+    /** Query parameters */
+    query?: {
+        [key: string]: string;
+    };
 }
 
 export interface IBuildToApp {
@@ -47,10 +53,12 @@ export interface IApplicationBuilder {
 
 export interface IBuildParams {
     /** Query parameters */
-    query?: {
-        [key: string]: string
-    };
+    query?: IQuery;
 
     /** Hash */
     hash?: string;
+}
+
+export interface IQuery {
+    [key: string]: string;
 }
