@@ -9,7 +9,7 @@ export interface IApplications {
 
 export interface IApplication {
     /** Protocol */
-    protocol?: 'http' | 'https';
+    protocol: 'http' | 'https';
 
     /** Host */
     host: string;

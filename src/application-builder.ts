@@ -1,3 +1,4 @@
+import * as urlModule from 'url';
 import {IApplicationBuilder, IRoute} from './url-builder.interface';
 
 export class ApplicationBuilder {
@@ -52,5 +53,35 @@ export class ApplicationBuilder {
         this._action = action;
 
         return this;
+    }
+
+    /**
+     * Create url by application and action
+     */
+    public build(): string {
+        const application = this._application;
+        const action = this._action;
+
+        if (!application) {
+            throw new Error('Have to call method "application" firstly');
+        }
+
+        if (!action) {
+            throw new Error('Have to call method "action" firstly');
+        }
+
+        const {protocol, host} = application.config;
+
+        const hostname = (() => {
+            if (!host.match(/^[a-zA-Z]+:\/\//)) {
+                return protocol + '://' + host;
+            }
+
+            return host;
+        })();
+
+        const buildUrl = new urlModule.URL(urlModule.resolve(hostname, action.params.pathname));
+
+        return buildUrl.toString();
     }
 }

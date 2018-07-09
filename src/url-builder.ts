@@ -29,7 +29,11 @@ export class ApplicationUrlBuilder {
                 name: actionName,
                 params: actionParams,
             })),
-            config: this._params.applications[appName],
+            config: {
+                ...this._params.applications[appName],
+                protocol: this._params.applications[appName].protocol || 'http',
+                host: this._params.applications[appName].host,
+            },
         }));
 
         const applicationBuilder = new ApplicationBuilder(applications);

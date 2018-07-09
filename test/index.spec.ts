@@ -1,4 +1,6 @@
 import {ApplicationUrlBuilder, Builder} from '../src';
+import {IRoute} from '../src/url-builder.interface';
+import {ApplicationBuilder} from '../src/application-builder';
 
 describe('#ApplicationUrlBuilder', () => {
     test('should throw error "Have to pass routes"', () => {
@@ -48,34 +50,89 @@ describe('#ApplicationUrlBuilder', () => {
             }
         });
 
-        expect(routes).toEqual([
-            {
-                applicationName: 'portal',
-                routes: [
-                    {
-                        name: 'main-page',
-                        params: {
-                            pathname: ''
-                        }
-                    },
-                    {
-                        name: 'transfer-page',
-                        params: {
-                            pathname: 'transfer'
-                        }
-                    },
-                    {
-                        name: 'transfer-search-page',
-                        params: {
-                            pathname: 'transfer/search'
-                        }
-                    }
-                ],
-                config: {
+        expect(routes).toBeInstanceOf(ApplicationBuilder);
+        // expect(routes).toEqual([
+        //     {
+        //         applicationName: 'portal',
+        //         routes: [
+        //             {
+        //                 name: 'main-page',
+        //                 params: {
+        //                     pathname: ''
+        //                 }
+        //             },
+        //             {
+        //                 name: 'transfer-page',
+        //                 params: {
+        //                     pathname: 'transfer'
+        //                 }
+        //             },
+        //             {
+        //                 name: 'transfer-search-page',
+        //                 params: {
+        //                     pathname: 'transfer/search'
+        //                 }
+        //             }
+        //         ],
+        //         config: {
+        //             protocol: 'https',
+        //             host: 'money.yandex.ru'
+        //         }
+        //     }
+        // ]);
+    });
+
+    test('should build "main-page" action successful', () => {
+        const urlBuilder = new ApplicationUrlBuilder({
+            applications: {
+                portal: {
                     protocol: 'https',
                     host: 'money.yandex.ru'
                 }
             }
-        ]);
+        });
+
+        const routes = urlBuilder.routes({
+            portal: {
+                'main-page': {
+                    pathname: '/'
+                },
+            }
+        });
+
+        const buildedUrl = routes.application('portal').action('main-page').build();
+
+        expect(buildedUrl).toBe('https://money.yandex.ru/');
+    });
+
+    test('should build "transfer-search-page" action successful', () => {
+        const urlBuilder = new ApplicationUrlBuilder({
+            applications: {
+                installments: {
+                    protocol: 'https',
+                    host: 'kassa.yandex.ru'
+                },
+                portal: {
+                    protocol: 'https',
+                    host: 'money.yandex.ru'
+                }
+            }
+        });
+
+        const routes = urlBuilder.routes({
+            portal: {
+                'transfer-search-page': {
+                    pathname: 'transfer/search'
+                }
+            }
+        });
+
+        const buildedUrl = routes
+            .application('portal')
+            .action('transfer-search-page')
+            .build()
+        ;
+
+        expect(buildedUrl).toBe('https://money.yandex.ru/transfer/search');
     });
 });
