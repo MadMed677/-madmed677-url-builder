@@ -2,7 +2,9 @@
 
 ## How to use
 
+1. Configure all your routes in one single place. For an example: __routes.js__
 ```js
+
 const urlBuilder = new UrlBuilder({
     applications: {
         installments: {
@@ -37,6 +39,7 @@ const routes = urlBuilder.routes({
 module.exports = routes;
 ```
 
+2. After that import your routes and build route by name. For an example: __app.js__
 ```js
 const routes = require('/path/to/routes');
 
@@ -53,4 +56,15 @@ const portalTransferSearchPage = routes
     .build()
 ;
 // 'https://money.yandex.ru/transfer/search/'
+
+const portalTransferSearchQueryPage = routes
+    .application('portal')
+    .action('transfer-search-page')
+    .query({
+        param1: 'val1',
+        param2: 'val2'
+    })
+    .build()
+;
+// 'https://money.yandex.ru/transfer/search/?param1=val1&param2=val2'
 ```
