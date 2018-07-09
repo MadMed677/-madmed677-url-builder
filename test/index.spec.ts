@@ -82,7 +82,7 @@ describe('#ApplicationUrlBuilder', () => {
         // ]);
     });
 
-    test('should build "main-page" action successful', () => {
+    test('should build "main-page" action', () => {
         const urlBuilder = new ApplicationUrlBuilder({
             applications: {
                 portal: {
@@ -105,7 +105,7 @@ describe('#ApplicationUrlBuilder', () => {
         expect(buildedUrl).toBe('https://money.yandex.ru/');
     });
 
-    test('should build "transfer-search-page" action successful', () => {
+    test('should build "transfer-search-page" action', () => {
         const urlBuilder = new ApplicationUrlBuilder({
             applications: {
                 installments: {
@@ -134,5 +134,41 @@ describe('#ApplicationUrlBuilder', () => {
         ;
 
         expect(buildedUrl).toBe('https://money.yandex.ru/transfer/search');
+    });
+
+    test('should build "transfer-search-page" action with query parameters', () => {
+        const urlBuilder = new ApplicationUrlBuilder({
+            applications: {
+                installments: {
+                    protocol: 'https',
+                    host: 'kassa.yandex.ru'
+                },
+                portal: {
+                    protocol: 'https',
+                    host: 'money.yandex.ru'
+                }
+            }
+        });
+
+        const routes = urlBuilder.routes({
+            portal: {
+                'transfer-search-page': {
+                    pathname: 'transfer/search'
+                }
+            }
+        });
+
+        const buildedUrl = routes
+            .application('portal')
+            .action('transfer-search-page')
+            .build({
+                query: {
+                    param1: 'var1',
+                    param2: 'var2'
+                }
+            })
+        ;
+
+        expect(buildedUrl).toBe('https://money.yandex.ru/transfer/search?param1=var1&param2=var2');
     });
 });

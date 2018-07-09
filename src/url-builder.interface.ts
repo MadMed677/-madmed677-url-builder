@@ -44,3 +44,9 @@ export interface IApplicationBuilder {
     /** Application config */
     config: IApplication;
 }
+
+export interface IBuildParams {
+    query?: {
+        [key: string]: string
+    };
+}

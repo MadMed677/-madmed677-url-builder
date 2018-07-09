@@ -60,11 +60,12 @@ const portalTransferSearchPage = routes
 const portalTransferSearchQueryPage = routes
     .application('portal')
     .action('transfer-search-page')
-    .query({
-        param1: 'val1',
-        param2: 'val2'
+    .build({
+        query: {
+            param1: 'val1',
+            param2: 'val2'
+        }
     })
-    .build()
 ;
 // 'https://money.yandex.ru/transfer/search/?param1=val1&param2=val2'
 ```

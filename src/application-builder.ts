@@ -1,5 +1,6 @@
+import * as _ from 'lodash';
 import * as urlModule from 'url';
-import {IApplicationBuilder, IRoute} from './url-builder.interface';
+import {IApplicationBuilder, IBuildParams, IRoute} from './url-builder.interface';
 
 export class ApplicationBuilder {
     /** Current application */
@@ -58,7 +59,7 @@ export class ApplicationBuilder {
     /**
      * Create url by application and action
      */
-    public build(): string {
+    public build(params: IBuildParams = {}): string {
         const application = this._application;
         const action = this._action;
 
@@ -81,6 +82,12 @@ export class ApplicationBuilder {
         })();
 
         const buildUrl = new urlModule.URL(urlModule.resolve(hostname, action.params.pathname));
+
+        if (params.query) {
+            _.forEach(params.query, (value, key) => {
+                buildUrl.searchParams.set(key, value);
+            });
+        }
 
         return buildUrl.toString();
     }
