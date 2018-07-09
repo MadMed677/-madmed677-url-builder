@@ -46,7 +46,11 @@ export interface IApplicationBuilder {
 }
 
 export interface IBuildParams {
+    /** Query parameters */
     query?: {
         [key: string]: string
     };
+
+    /** Hash */
+    hash?: string;
 }

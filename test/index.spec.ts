@@ -171,4 +171,41 @@ describe('#ApplicationUrlBuilder', () => {
 
         expect(buildedUrl).toBe('https://money.yandex.ru/transfer/search?param1=var1&param2=var2');
     });
+
+    test('should build "transfer-search-page" action with query parameters and hash', () => {
+        const urlBuilder = new ApplicationUrlBuilder({
+            applications: {
+                installments: {
+                    protocol: 'https',
+                    host: 'kassa.yandex.ru'
+                },
+                portal: {
+                    protocol: 'https',
+                    host: 'money.yandex.ru'
+                }
+            }
+        });
+
+        const routes = urlBuilder.routes({
+            portal: {
+                'transfer-search-page': {
+                    pathname: 'transfer/search'
+                }
+            }
+        });
+
+        const buildedUrl = routes
+            .application('portal')
+            .action('transfer-search-page')
+            .build({
+                query: {
+                    param1: 'var1',
+                    param2: 'var2'
+                },
+                hash: 'hello-world'
+            })
+        ;
+
+        expect(buildedUrl).toBe('https://money.yandex.ru/transfer/search?param1=var1&param2=var2#hello-world');
+    });
 });

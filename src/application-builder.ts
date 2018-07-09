@@ -89,6 +89,10 @@ export class ApplicationBuilder {
             });
         }
 
+        if (params.hash) {
+            buildUrl.hash = params.hash;
+        }
+
         return buildUrl.toString();
     }
 }
