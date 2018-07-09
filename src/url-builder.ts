@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
-import {IInitiateRoutes, IUrlBuilder} from './url-builder.interface';
+import {ApplicationBuilder} from './application-builder';
+import {IApplicationBuilder, IInitiateRoutes, IUrlBuilder} from './url-builder.interface';
 
 export class ApplicationUrlBuilder {
     /** UrlBuilder parameters */
@@ -22,17 +23,17 @@ export class ApplicationUrlBuilder {
             throw new Error('One of the routes is not supported');
         }
 
-        const applications = _.map(routes, (actions, appName) => {
-            return {
-                applicationName: appName,
-                routes: _.map(actions, (actionParams, actionName) => ({
-                    name: actionName,
-                    params: actionParams
-                })),
-                config: this._params.applications[appName]
-            };
-        });
+        const applications: IApplicationBuilder[] = _.map(routes, (actions, appName) => ({
+            applicationName: appName,
+            routes: _.map(actions, (actionParams, actionName) => ({
+                name: actionName,
+                params: actionParams,
+            })),
+            config: this._params.applications[appName],
+        }));
 
-        return applications;
+        const applicationBuilder = new ApplicationBuilder(applications);
+
+        return applicationBuilder;
     }
 }

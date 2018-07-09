@@ -16,7 +16,7 @@ describe('#ApplicationUrlBuilder', () => {
         }).toThrowError();
     });
 
-    test('should build routes successful', (done) => {
+    test('should build routes successful', () => {
         const urlBuilder = new ApplicationUrlBuilder({
             applications: {
                 installments: {
@@ -34,54 +34,48 @@ describe('#ApplicationUrlBuilder', () => {
             }
         });
 
-        try {
-            const routes = urlBuilder.routes({
-                portal: {
-                    'main-page': {
-                        pathname: ''
-                    },
-                    'transfer-page': {
-                        pathname: 'transfer'
-                    },
-                    'transfer-search-page': {
-                        pathname: 'transfer/search'
-                    }
+        const routes = urlBuilder.routes({
+            portal: {
+                'main-page': {
+                    pathname: ''
+                },
+                'transfer-page': {
+                    pathname: 'transfer'
+                },
+                'transfer-search-page': {
+                    pathname: 'transfer/search'
                 }
-            });
+            }
+        });
 
-            expect(routes).toEqual([
-                {
-                    applicationName: 'portal',
-                    routes: [
-                        {
-                            name: 'main-page',
-                            params: {
-                                pathname: ''
-                            }
-                        },
-                        {
-                            name: 'transfer-page',
-                            params: {
-                                pathname: 'transfer'
-                            }
-                        },
-                        {
-                            name: 'transfer-search-page',
-                            params: {
-                                pathname: 'transfer/search'
-                            }
+        expect(routes).toEqual([
+            {
+                applicationName: 'portal',
+                routes: [
+                    {
+                        name: 'main-page',
+                        params: {
+                            pathname: ''
                         }
-                    ],
-                    config: {
-                        protocol: 'https',
-                        host: 'money.yandex.ru'
+                    },
+                    {
+                        name: 'transfer-page',
+                        params: {
+                            pathname: 'transfer'
+                        }
+                    },
+                    {
+                        name: 'transfer-search-page',
+                        params: {
+                            pathname: 'transfer/search'
+                        }
                     }
+                ],
+                config: {
+                    protocol: 'https',
+                    host: 'money.yandex.ru'
                 }
-            ]);
-
-            done();
-        } catch (e) {
-            done(e);
-        }
+            }
+        ]);
     });
 });

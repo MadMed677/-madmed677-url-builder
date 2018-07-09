@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index",
   "scripts": {
-    "precommit": "npm run lint",
+    "precommit": "npm run lint & npm run test",
     "build:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "build:prod": "tsc",
     "lint": "tslint -c tslint.json '{src,test}/**/*.ts'",

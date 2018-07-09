@@ -1,6 +1,3 @@
-// interface IApplications {
-    // [string]: string;
-// }
 export interface IUrlBuilder {
     /** Map of applications and those urls */
     applications: IApplications;
@@ -30,4 +27,20 @@ export interface IInitiateRoutes {
     [key: string]: {
         [key: string]: IRouteConfig
     };
+}
+
+export interface IRoute {
+    name: string;
+    params: IRouteConfig;
+}
+
+export interface IApplicationBuilder {
+    /** Application name */
+    applicationName: string;
+
+    /** Application routes */
+    routes: IRoute[];
+
+    /** Application config */
+    config: IApplication;
 }
