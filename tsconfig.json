@@ -4,12 +4,15 @@
     "target": "es6",
     "sourceMap": true,
     "declaration": true,
+    "rootDir": "./src",
     "outDir": "./dist",
     "moduleResolution": "node",
     "strict": true,
     "strictNullChecks": false
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "test",
+    "dist"
   ]
 }

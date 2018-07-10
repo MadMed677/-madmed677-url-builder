@@ -7,7 +7,7 @@
   "scripts": {
     "precommit": "npm run lint & npm run test",
     "build:dev": "ts-node -r tsconfig-paths/register src/index.ts",
-    "build:prod": "tsc",
+    "build:prod": "rm -rf dist && tsc",
     "lint": "tslint -c tslint.json '{src,test}/**/*.ts'",
     "test": "jest"
   },
