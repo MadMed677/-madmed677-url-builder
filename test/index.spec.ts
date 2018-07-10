@@ -1,5 +1,4 @@
-import {ApplicationUrlBuilder, Builder} from '../src';
-import {IRoute} from '../src/url-builder.interface';
+import {ApplicationUrlBuilder} from '../src';
 import {ApplicationBuilder} from '../src/application-builder';
 
 describe('#ApplicationUrlBuilder', () => {
@@ -8,9 +7,9 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
-                }
-            }
+                    host: 'kassa.yandex.ru',
+                },
+            },
         });
 
         expect(() => {
@@ -23,63 +22,34 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 checkout: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
             portal: {
                 'main-page': {
-                    pathname: ''
+                    pathname: '',
                 },
                 'transfer-page': {
-                    pathname: 'transfer'
+                    pathname: 'transfer',
                 },
                 'transfer-search-page': {
-                    pathname: 'transfer/search'
-                }
-            }
+                    pathname: 'transfer/search',
+                },
+            },
         });
 
         expect(routes).toBeInstanceOf(ApplicationBuilder);
-        // expect(routes).toEqual([
-        //     {
-        //         applicationName: 'portal',
-        //         routes: [
-        //             {
-        //                 name: 'main-page',
-        //                 params: {
-        //                     pathname: ''
-        //                 }
-        //             },
-        //             {
-        //                 name: 'transfer-page',
-        //                 params: {
-        //                     pathname: 'transfer'
-        //                 }
-        //             },
-        //             {
-        //                 name: 'transfer-search-page',
-        //                 params: {
-        //                     pathname: 'transfer/search'
-        //                 }
-        //             }
-        //         ],
-        //         config: {
-        //             protocol: 'https',
-        //             host: 'money.yandex.ru'
-        //         }
-        //     }
-        // ]);
     });
 
     test('should build "main-page" action', () => {
@@ -87,17 +57,17 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
             portal: {
                 'main-page': {
-                    pathname: '/'
+                    pathname: '/',
                 },
-            }
+            },
         });
 
         const buildedUrl = routes.application('portal').action('main-page').build();
@@ -110,21 +80,21 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
             portal: {
                 'transfer-search-page': {
-                    pathname: 'transfer/search'
-                }
-            }
+                    pathname: 'transfer/search',
+                },
+            },
         });
 
         const buildedUrl = routes
@@ -141,21 +111,21 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
             portal: {
                 'transfer-search-page': {
-                    pathname: 'transfer/search'
-                }
-            }
+                    pathname: 'transfer/search',
+                },
+            },
         });
 
         const buildedUrl = routes
@@ -164,8 +134,8 @@ describe('#ApplicationUrlBuilder', () => {
             .build({
                 query: {
                     param1: 'var1',
-                    param2: 'var2'
-                }
+                    param2: 'var2',
+                },
             })
         ;
 
@@ -177,21 +147,21 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
             portal: {
                 'transfer-search-page': {
-                    pathname: 'transfer/search'
-                }
-            }
+                    pathname: 'transfer/search',
+                },
+            },
         });
 
         const buildedUrl = routes
@@ -200,9 +170,9 @@ describe('#ApplicationUrlBuilder', () => {
             .build({
                 query: {
                     param1: 'var1',
-                    param2: 'var2'
+                    param2: 'var2',
                 },
-                hash: 'hello-world'
+                hash: 'hello-world',
             })
         ;
 
@@ -214,13 +184,13 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
@@ -229,17 +199,17 @@ describe('#ApplicationUrlBuilder', () => {
                     pathname: 'transfer/search',
                     query: {
                         param1: 'var1',
-                        param2: 'var2'
-                    }
-                }
-            }
+                        param2: 'var2',
+                    },
+                },
+            },
         });
 
         const buildedUrl = routes
             .application('portal')
             .action('transfer-search-page')
             .build({
-                hash: 'hello-world'
+                hash: 'hello-world',
             })
         ;
 
@@ -251,13 +221,13 @@ describe('#ApplicationUrlBuilder', () => {
             applications: {
                 installments: {
                     protocol: 'https',
-                    host: 'kassa.yandex.ru'
+                    host: 'kassa.yandex.ru',
                 },
                 portal: {
                     protocol: 'https',
-                    host: 'money.yandex.ru'
-                }
-            }
+                    host: 'money.yandex.ru',
+                },
+            },
         });
 
         const routes = urlBuilder.routes({
@@ -266,10 +236,10 @@ describe('#ApplicationUrlBuilder', () => {
                     pathname: 'transfer/search',
                     query: {
                         param1: 'var1',
-                        param2: 'var2'
-                    }
-                }
-            }
+                        param2: 'var2',
+                    },
+                },
+            },
         });
 
         const buildedUrl = routes
@@ -277,14 +247,14 @@ describe('#ApplicationUrlBuilder', () => {
             .action('transfer-search-page')
             .build({
                 query: {
-                    param3: 'var3'
+                    param3: 'var3',
                 },
-                hash: 'hello-world'
+                hash: 'hello-world',
             })
         ;
 
         expect(buildedUrl).toBe(
-            'https://money.yandex.ru/transfer/search?param1=var1&param2=var2&param3=var3#hello-world'
+            'https://money.yandex.ru/transfer/search?param1=var1&param2=var2&param3=var3#hello-world',
         );
     });
 });
