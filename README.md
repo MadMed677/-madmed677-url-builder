@@ -1,8 +1,19 @@
 # UrlBuilder
 
+## Install
+
+```bash
+$ npm i --save @madmed677/url-builder
+```
+
 ## How to use
 
-__1__: Configure all your routes in one single place. For an example: __routes.js__
+__1__ Import into your project
+```js
+const {ApplicationUrlBuilder} = require('@madmed677/url-builder');
+```
+
+__2__: Configure all your routes in one single place. For an example: __routes.js__
 
 ```js
 const urlBuilder = new ApplicationUrlBuilder({
@@ -42,7 +53,7 @@ const routes = urlBuilder.routes({
 module.exports = routes;
 ```
 
-__2__: After that import your routes and build route by name. For an example: __app.js__
+__3__: After that import your routes and build route by name. For an example: __app.js__
 ```js
 const routes = require('/path/to/routes');
 
