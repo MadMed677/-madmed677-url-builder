@@ -33,7 +33,7 @@ const routes = urlBuilder.routes({
         'transfer-search-page': {
             pathname: 'transfer/search',
             query: {
-                foo: 'baz'
+                param3: 'val3'
             }
         }
     }
@@ -67,8 +67,9 @@ const portalTransferSearchQueryPage = routes
         query: {
             param1: 'val1',
             param2: 'val2'
-        }
+        },
+        hash: 'some-hash'
     })
 ;
-// 'https://money.yandex.ru/transfer/search?param1=val1&param2=val2'
+// 'https://money.yandex.ru/transfer/search?param1=val1&param2=val2&param3=val3#some-hash'
 ```
