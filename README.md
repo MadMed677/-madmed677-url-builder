@@ -1,12 +1,12 @@
 # UrlBuilder
 
-## Install
+## Intro
+A modern Javascript library for NodeJS to build urls to applications
 
+## Installation
 ```bash
 $ npm i --save @madmed677/url-builder
 ```
-
-## How to use
 
 __1__ Import into your project
 ```js
@@ -14,7 +14,6 @@ const {ApplicationUrlBuilder} = require('@madmed677/url-builder');
 ```
 
 __2__: Configure all your routes in one single place. For an example: __routes.js__
-
 ```js
 const urlBuilder = new ApplicationUrlBuilder({
     applications: {
