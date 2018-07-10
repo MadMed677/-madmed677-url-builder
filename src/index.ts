@@ -1,4 +1,4 @@
-import {ApplicationUrlBuilder} from './url-builder';
+import {ApplicationUrlBuilder} from './application-url-builder';
 
 export {
     ApplicationUrlBuilder,
