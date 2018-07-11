@@ -9,7 +9,8 @@
     "build:dev": "ts-node -r tsconfig-paths/register src/index.ts",
     "build:prod": "rm -rf dist && tsc",
     "lint": "tslint -c tslint.json '{src,test}/**/*.ts'",
-    "test": "npm run build:prod && jest"
+    "coverage": "npm run test -- --coverage",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -27,27 +28,25 @@
     "qs": "^6.5.2"
   },
   "devDependencies": {
-    "@types/jest": "23.1.4",
+    "@types/jest": "^23.1.4",
     "@types/lodash": "^4.14.110",
     "@types/node": "^10.5.2",
     "husky": "^0.14.3",
-    "jest": "23.3.0",
-    "ts-jest": "23.0.0",
+    "jest": "^22.4.4",
+    "ts-jest": "^22.4.6",
     "ts-node": "^7.0.0",
     "tslint": "^5.10.0",
     "typescript": "^2.9.2"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "test",
-    "testRegex": ".spec.ts$",
     "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
+      "^.+\\.tsx?$": "ts-jest"
     },
-    "coverageDirectory": "../coverage"
+    "testRegex": "(test.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json"
+    ]
   }
 }

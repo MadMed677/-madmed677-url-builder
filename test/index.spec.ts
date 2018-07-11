@@ -1,4 +1,4 @@
-import {ApplicationUrlBuilder} from '..';
+import {ApplicationUrlBuilder} from '../src';
 
 describe('#ApplicationUrlBuilder', () => {
     test('should throw error "Have to pass routes"', () => {
