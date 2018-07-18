@@ -1,4 +1,5 @@
 # UrlBuilder
+[![travis build](https://img.shields.io/travis/MadMed677/-madmed677-url-builder.svg?style=flat-square)](https://travis-ci.org/MadMed677/-madmed677-url-builder)
 
 ## Intro
 A modern Javascript library for NodeJS to build urls to applications

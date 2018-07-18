@@ -1,5 +1,4 @@
 import {ApplicationUrlBuilder} from '../src';
-import {UrlBuilder} from '../src/url-builder';
 
 describe('#ApplicationUrlBuilder', () => {
     test('should throw error "Have to pass routes"', () => {
@@ -49,7 +48,7 @@ describe('#ApplicationUrlBuilder', () => {
             },
         });
 
-        expect(routes).toBeInstanceOf(UrlBuilder);
+        expect(routes).not.toBe(null);
     });
 
     test('should build "main-page" action', () => {
