@@ -41,3 +41,4 @@ export class ApplicationUrlBuilder {
         return applicationBuilder;
     }
 }
+
